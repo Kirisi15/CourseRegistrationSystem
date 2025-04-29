@@ -29,4 +29,9 @@ public class CourseService {
     public List<CourseRegistry> enrolledStudents() {
         return courseRegistryRepo.findAll();
     }
+
+    public void enrollCourse(String name, String emailId, String courseName) {
+        CourseRegistry courseRegistry = new CourseRegistry(name,emailId,courseName);
+        courseRegistryRepo.save(courseRegistry);
+    }
 }

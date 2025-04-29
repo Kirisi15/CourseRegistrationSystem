@@ -47,4 +47,14 @@ public class CourseRegistry {
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
+
+    public CourseRegistry(String name, String emailId, String courseName) {
+
+        this.name = name;
+        this.emailId = emailId;
+        this.courseName = courseName;
+    }
+
+    public CourseRegistry() {
+    }
 }
