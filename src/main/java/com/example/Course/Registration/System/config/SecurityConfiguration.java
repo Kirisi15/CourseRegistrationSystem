@@ -25,6 +25,7 @@ public class SecurityConfiguration {
         http.csrf(customizer -> customizer.disable());
         http.authorizeHttpRequests(request -> request
                 .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/Courses/**").permitAll()
                 .anyRequest().authenticated());
         //http.formLogin(Customizer.withDefaults());
         http.httpBasic(Customizer.withDefaults());
