@@ -1,10 +1,7 @@
 package com.example.Course.Registration.System.Model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class CourseRegistry {
@@ -13,6 +10,7 @@ public class CourseRegistry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @Column(unique = true)
     private String emailId;
     private String courseName;
 
