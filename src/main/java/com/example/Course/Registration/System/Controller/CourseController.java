@@ -10,20 +10,20 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173/")
-
+@RequestMapping("/Courses")
 public class CourseController {
 
     @Autowired
     CourseService courseService;
 
-    @GetMapping("Courses")
+    @GetMapping("/CoursesEnrolled")
     public List<Course> availableCourses(){
             return courseService.availableCourses();
     }
 
 
 
-    @PostMapping("/Courses/register")
+    @PostMapping("/register")
     public String enrollCourse(@RequestParam("name") String name,
                                @RequestParam("emailId") String emailId,
                                @RequestParam("courseName") String courseName) {
@@ -31,7 +31,7 @@ public class CourseController {
                 return "Successfully enrolled in the course: " + courseName;
     }
 
-    @GetMapping("/")
+    @GetMapping("/Hi")
     public String home() {
         return "Welcome to the home page!";
     }
