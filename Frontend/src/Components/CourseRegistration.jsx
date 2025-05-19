@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import axios from 'axios';
 
 
@@ -13,6 +13,19 @@ const CourseRegistration = () => {
     );
 
     const [message, setMessage] = useState('');
+    const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/Courses/CoursesEnrolled')
+        .then((response) =>{
+            setCourses(response.data);
+        })
+        .catch(error => {
+            console.error('Error fetching courses:', error);
+        })
+    },[]);
+
+    
     
     const handleChange = (e) =>{
         setFormData(prev => ({
@@ -72,11 +85,11 @@ const CourseRegistration = () => {
             onChange={handleChange}
             required>
                 <option value="" disabled>Select Course</option>
-                <option value="React">React</option>
-                <option value="Node">Node</option>
-                <option value="Java">Java</option>
-                <option value="Python">Python</option>
-                <option value="JavaScript">JavaScript</option>
+                {courses.map(course =>(
+                    <option key={course.id} value={course.courseName}>
+                        {course.courseName}
+                    </option>
+                ))}
             </select>
             <br />
             <button type="submit">Enroll</button>
